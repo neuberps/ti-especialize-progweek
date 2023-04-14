@@ -1,6 +1,7 @@
 package br.tie.progweek.model;
 
-import lombok.AllArgsConstructor;
+import br.tie.progweek.dto.UserDTO;
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 
 @Data
-@AllArgsConstructor
+@Builder
 @Document(collection = "user")
 public class User implements Serializable {
 
@@ -20,4 +21,14 @@ public class User implements Serializable {
 	private String created;
 	private String updated;
 
+	public UserDTO toUserDTO() {
+		return UserDTO.builder()
+				.id(id)
+				.name(name)
+				.email(email)
+				.cel(cel)
+				.created(created)
+				.updated(updated)
+				.build();
+	}
 }
