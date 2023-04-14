@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+</head>
+<body>
+    <body class="bg-light">
+        {{> menu}}
+        <main class="container">
+            <div class="content">
+                <div class="p-3 my-3 bg-body rounded shadow-sm">
+                    <div class="mb-0 small lh-sm w-100">
+                        <div class="d-flex justify-content-between">
+                            <h2 class="mb-0">
+                                Cadastrar Cliente
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row gx-5 justify-content-center mb-4 my-3">
+                    <form id="user-register-form" action="/saveClient" method="post" name="client" class="needs-validation" novalidate>
+                        <input type="hidden" id="id" name="id" value="{{#client.id}}{{client.id}}{{/client.id}}">
+                        <div class="col-lg-12 mb-0 col-xl-12 text-center">
+                            <h2 class="h4 fw-normal text-center mb-3">Preencha os dados do Usuário:</h2>
+                            <div class="input-group input-group-lg mb-1">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Nome completo:" required maxlength="120" minlength="8" value="{{#client.name}}{{client.name}}{{/client.name}}">
+                            </div>
+                            <div class="input-group input-group-lg mb-1">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="E-mail:" required maxlength="120" minlength="8" value="{{#client.email}}{{client.email}}{{/client.email}}">
+                            </div>
+                            <div class="input-group input-group-lg mb-1">
+                                <input type="text" class="form-control" id="cel" name="cel" placeholder="Celular:" required maxlength="15" minlength="14" value="{{#client.cel}}{{client.cel}}{{/client.cel}}">
+                            </div>
+                            <div class="input-group input-group-lg mb-1">
+                                <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF:" required maxlength="14" minlength="14" value="{{#client.cpf}}{{client.cpf}}{{/client.cpf}}">
+                            </div>
+                            <div class="input-group input-group-lg mb-1">
+                                <input type="text" class="form-control" id="company" name="company" placeholder="Empresa:" required maxlength="50" minlength="3" value="{{#client.company}}{{client.company}}{{/client.company}}">
+                            </div>
+                        </div>
+                        <div class="d-grid gap-1 my-2 d-sm-flex justify-content-sm-center">
+                            <button type="submit" class="btn btn-primary btn-lg px-4">
+                                {{#client.id}}Atualizar{{/client.id}}{{^client.id}}Cadastrar{{/client.id}}
+                            </button>
+                            {{#client.id}}
+                                <a href="/deleteClient?id={{client.id}}" class="btn btn-outline-secondary btn-lg px-4">
+                                    Excluir Cliente
+                                </a>
+                            {{/client.id}}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{> footer}}
+    </main>
+</body>
+</html>

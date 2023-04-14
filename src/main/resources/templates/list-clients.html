@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{> head}}
+</head>
+<body>
+    <body class="bg-light">
+        {{> menu}}
+        <main class="container">
+            <div class="content">
+                <div class="p-3 my-3 bg-body rounded shadow-sm">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="mb-0">
+                            Clientes
+                            <span class="fw-normal">(<b>{{listSize}}</b>)</span>
+                        </h2>
+                        <a href="/createClient" class="btn bd-btn-lg btn-primary d-flex align-items-center justify-content-center fw-semibold">
+                            Incluir Cliente
+                        </a>
+                    </div>
+                </div>
+                {{#showlist}}
+                    <div class="p-3 my-3 bg-body rounded shadow-sm">
+                        <table class="table table-striped border-top">
+                            <thead>
+                                <tr>
+                                    <th class="align-middle ps-2">NOME</th>
+                                    <th class="align-middle ps-3">E-MAIL</th>
+                                    <th class="align-middle ps-3">CEL</th>
+                                    <th class="align-middle ps-3">CPF</th>
+                                    <th class="align-middle ps-3">EMPRESA</th>
+                                    <th class="align-middle text-end ps-3">CRIADO EM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#list}}
+                                    <tr class="link-tr" data-url="/editClient?id={{id}}">
+                                        <td class="align-middle ps-2 py-4">
+                                            <b><p class="mb-0">{{name}}</p></b>
+                                        </td>
+                                        <td class="align-middle ps-3 py-4">
+                                            <p class="mb-0">{{email}}</p>
+                                        </td>
+                                        <td class="align-middle ps-3 py-4">
+                                            <p class="mb-0">{{cel}}</p>
+                                        </td>
+                                        <td class="align-middle ps-3 py-4">
+                                            <p class="mb-0">{{cpf}}</p>
+                                        </td>
+                                        <td class="align-middle ps-3 py-4">
+                                            <p class="mb-0">{{company}}</p>
+                                        </td>
+                                        <td class="align-middle text-end ps-3 py-4">
+                                            <p class="mb-0">{{created}}</p>
+                                        </td>
+                                    </tr>
+                                {{/list}}
+                            </tbody>
+                        </table>
+                    </div>
+                {{/showlist}}
+            </div>
+        </div>
+        {{> footer}}
+    </main>
+</body>
+</html>
