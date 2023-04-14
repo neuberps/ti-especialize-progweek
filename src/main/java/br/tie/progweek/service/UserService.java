@@ -19,38 +19,56 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> list() {
+    public List<User> list() throws Exception {
         return userRepository.findAll();
     }
 
-    public User saveAndUpdate(User user) {
+    public void saveAndUpdate(User user) throws Exception {
         if (!user.getId().isEmpty()) {
-            return update(user);
+            update(user);
         } else {
-            return save(user);
+            save(user);
         }
     }
-    public User save(User user) {
+    public void save(User user) throws Exception {
         try {
             user.setId(ObjectId.get().toString());
             user.setCreated(LocalTimeZone.now());
-            return userRepository.save(user);
+            userRepository.save(user);
         } catch (Exception e) {
             log.error(e.getMessage());
+            throw(e);
         }
-        return null;
     }
 
-    public Optional<User> getUser(String id) {
+    public Optional<User> getUser(String id) throws Exception {
         try {
             return userRepository.findById(id);
         } catch (Exception e) {
             log.error(e.getMessage());
+            throw(e);
         }
-        return null;
     }
 
-    public User update(User user) {
+    public Optional<User> findByName(String name) throws Exception {
+        try {
+            return userRepository.findByName(name);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw(e);
+        }
+    }
+
+    public Optional<User> findByEmail(User user) throws Exception {
+        try {
+            return userRepository.findByEmail(user.getEmail());
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw(e);
+        }
+    }
+
+    public void update(User user) throws Exception {
         try {
             Optional<User> optUser = getUser(user.getId());
             if (optUser.isPresent()) {
@@ -59,21 +77,20 @@ public class UserService {
                 userDB.setCel(user.getCel());
                 userDB.setEmail(user.getEmail());
                 userDB.setUpdated(LocalTimeZone.now());
-                return userRepository.save(userDB);
+                userRepository.save(userDB);
             }
         } catch (Exception e) {
             log.error(e.getMessage());
+            throw(e);
         }
-        return null;
     }
 
-    public Boolean delete(String id) {
+    public void delete(String id) throws Exception {
         try {
             userRepository.deleteById(id);
-            return true;
         } catch (Exception e) {
             log.error(e.getMessage());
-            return null;
+            throw(e);
         }
     }
 
