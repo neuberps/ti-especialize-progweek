@@ -10,5 +10,15 @@
     <nav class="nav" aria-label="Secondary navigation">
         <a class="nav-link" href="/">Home</a>
         <a class="nav-link" href="/listUsers">Usuários</a>
+        <a class="nav-link" href="/listClients">Clientes</a>
     </nav>
 </div>
+{{#msg}}
+<div class="alert {{msg.cssClass}} alert-dismissible fade show">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <div class="text-center">
+        <strong>{{msg.title}}</strong><br/>
+        {{msg.text}}
+    </div>
+</div>
+{{/msg}}
