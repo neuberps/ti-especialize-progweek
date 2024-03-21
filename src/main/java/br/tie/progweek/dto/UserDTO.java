@@ -1,11 +1,11 @@
 package br.tie.progweek.dto;
 
 import br.tie.progweek.model.User;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 @Data
