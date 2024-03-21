@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Data
 @Builder
-@Document(collection = "user")
+@Document(collection = "users")
 public class User implements Serializable {
 
 	@Id

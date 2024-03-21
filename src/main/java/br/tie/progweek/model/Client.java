@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @Builder
-@Document(collection = "client")
+@Document(collection = "clients")
 public class Client implements Serializable {
 
 	@Id
